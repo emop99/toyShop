@@ -3,8 +3,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
-
 /**
  * Trait ControllerTrait
  * @package App\Http\Controllers
@@ -27,11 +25,7 @@ trait ControllerTrait
             return 'App\\Http\\Controllers\\'.$this->folderPath.'\\'.$this->className;
         }
 
-        abort(404);
-        Log::info(__FILE__ . ':' . __LINE__, [
-            'ERROR' => 'getControllerClass :: file_exists($classFilePath) false',
-            '$classFilePath' => $classFilePath
-        ]);
+        header('location: ' . '/admin/main');
         exit;
     }
 }

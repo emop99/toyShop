@@ -21,6 +21,8 @@ class MainController
 
     public function show()
     {
-        return view('admin.main', []);
+        return view('admin.main', [
+            'adminName' => $this->request->session()->get('adminInfo')['Name']
+        ]);
     }
 }
