@@ -1,8 +1,17 @@
 ToyShop.Login = new function () {
 
+    const idRememberCookieName = 'adminIdRememberCheck';
+
     this.loginBtn = function () {
+        var email = $('#eamil').val();
+        if ($('#idRememberChack:checked').length) {
+            $.cookie(idRememberCookieName, email, { expires: 30 });
+        } else {
+            $.removeCookie(idRememberCookieName);
+        }
+
         var sendData = {
-            'email': $('#eamil').val(),
+            'email': email,
             'password': $('#password').val(),
             'mode': 'login'
         };
@@ -20,5 +29,16 @@ ToyShop.Login = new function () {
         if (event.keyCode === 13) {
             ToyShop.Login.loginBtn();
         }
-    }
+    };
+
+    this.adminIdRememberCheck = function () {
+        if ($.cookie(idRememberCookieName) !== undefined) {
+            $('#idRememberChack')[0].checked = true;
+            $('#eamil').val($.cookie(idRememberCookieName));
+        }
+    };
 };
+
+$(function () {
+    ToyShop.Login.adminIdRememberCheck();
+});

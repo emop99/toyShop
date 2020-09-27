@@ -18,7 +18,7 @@ class Admin
         if (empty($request->session()->get('adminInfo')) && $request->method() == 'GET' && $url !== 'login') {
             header('location: ' . '/admin/login');
             exit;
-        } elseif (!empty($request->session()->get('adminInfo')) && $url === 'login') {
+        } elseif (!empty($request->session()->get('adminInfo')) && $url === 'login' && $request->method() == 'GET') {
             header('location: ' . '/admin/main');
             exit;
         }

@@ -21,7 +21,7 @@ ToyShop.Top = new function () {
             'url': window.location.pathname
         };
 
-        option = $.extend(option, normalOption);
+        option = $.extend(normalOption, option);
 
         $.ajax({
             'url': option.url,
@@ -36,6 +36,16 @@ ToyShop.Top = new function () {
             success: function (data) {
                 callBack(data);
             }
+        });
+    };
+
+    this.adminLogOut = function () {
+        var sendData = {
+            'mode' : 'logout'
+        };
+
+        ToyShop.Top.ajax({'url': '/admin/login'}, sendData, function () {
+            window.location.href = '/admin/login';
         });
     };
 };

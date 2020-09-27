@@ -50,4 +50,12 @@ class LoginController
         echo json_encode($returnData);
         exit;
     }
+
+    public function logout()
+    {
+        $this->request->session()->forget('adminInfo');
+        $this->request->session()->save();
+        echo true;
+        exit;
+    }
 }

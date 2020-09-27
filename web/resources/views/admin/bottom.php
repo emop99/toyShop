@@ -35,7 +35,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                <a class="btn btn-primary" href="/admin/logout">로그아웃</a>
+                <a class="btn btn-primary" href="javascript:;" onclick="ToyShop.Top.adminLogOut();">로그아웃</a>
             </div>
         </div>
     </div>

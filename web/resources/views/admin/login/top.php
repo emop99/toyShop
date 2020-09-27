@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="/js/jQuery v3.5.1.min.js"></script>
+    <script src="/js/JQuery.Cookie.js?<?= CASH ?>"></script>
     <title>-toyShop-</title>
 
     <script src="/js/ToyShop.js?<?= CASH ?>"></script>
