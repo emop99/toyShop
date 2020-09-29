@@ -6,6 +6,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Model\AdminList;
 use Illuminate\Http\Request;
+use App\Model\AdminLoginLog;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ViewControl;
 use App\Http\Controllers\RequestControl;
@@ -43,8 +44,14 @@ class LoginController
             $returnData['msg'] = '아이디 혹은 비밀번호를 확인해주세요.';
         } else {
             $returnData['state'] = 1;
-            $this->request->session()->put('adminInfo', $check->toArray());
+            $adminInfo = $check->toArray();
+            $this->request->session()->put('adminInfo', $adminInfo);
             $this->request->session()->save();
+
+            $adminloginlog = new AdminLoginLog();
+            $adminloginlog->AdminNo = $adminInfo['No'];
+            $adminloginlog->Ip = $_SERVER['REMOTE_ADDR'];
+            $adminloginlog->save();
         }
 
         echo json_encode($returnData);

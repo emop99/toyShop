@@ -12,6 +12,7 @@
 
     <link href="/css/all.css" rel="stylesheet" type="text/css">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <script src="/js/jQuery v3.5.1.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
@@ -315,21 +316,21 @@
                         <a class="nav-link dropdown-toggle" href="javascript:;" id="userDropdown" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $adminName ?></span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $adminTopInfo['adminName'] ?></span>
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="javascript:;">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 프로필
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="javascript:;">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 설정
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/admin/loginlog">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 접속 로그
                             </a>
