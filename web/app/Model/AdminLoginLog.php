@@ -20,6 +20,6 @@ class AdminLoginLog extends Model
     {
         return AdminLoginLog::where('AdminNo', $adminNo)
             ->orderBy('LoginTime', 'DESC')
-            ->paginate(2);
+            ->paginate(30);
     }
 }

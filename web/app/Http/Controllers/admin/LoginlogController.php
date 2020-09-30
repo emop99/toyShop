@@ -28,7 +28,7 @@ class LoginlogController
 
         return view('admin.loginlog', [
             'adminTopInfo' => $this->adminTopInfo,
-            'loginList'    => $loginList->toArray()
+            'loginList'    => $loginList
         ]);
     }
 }
