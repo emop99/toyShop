@@ -31,7 +31,7 @@ ToyShop.Top = new function () {
             'dataType': option.dataType,
             'async': option.async,
             error: function (request, error) {
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             },
             success: function (data) {
                 callBack(data);
@@ -41,11 +41,21 @@ ToyShop.Top = new function () {
 
     this.adminLogOut = function () {
         var sendData = {
-            'mode' : 'logout'
+            'mode': 'logout'
         };
 
         ToyShop.Top.ajax({'url': '/admin/login'}, sendData, function () {
             window.location.href = '/admin/login';
         });
+    };
+
+    this.topToggleBtn = function () {
+        var $sidbar = $(".sidebar");
+        $("body").toggleClass("sidebar-toggled");
+        $sidbar.toggleClass("toggled");
+
+        if ($sidbar.hasClass("toggled")) {
+            $('.sidebar .collapse').collapse('hide');
+        }
     };
 };

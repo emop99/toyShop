@@ -13,5 +13,6 @@ trait AdminTopValue
     public function setAdminTopInfo(Request $request)
     {
         $this->adminTopInfo['adminName'] = $request->session()->get('adminInfo')['Name'];
+        $this->adminTopInfo['adminNo']   = $request->session()->get('adminInfo')['No'];
     }
 }

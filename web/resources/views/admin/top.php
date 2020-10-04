@@ -11,7 +11,7 @@
     <title>-toyShop-</title>
 
     <link href="/css/all.css" rel="stylesheet" type="text/css">
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <script src="/js/jQuery v3.5.1.min.js"></script>
@@ -137,7 +137,7 @@
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0" id="sidebarToggle" onclick="ToyShop.Top.topToggleBtn();"></button>
         </div>
 
     </ul>
@@ -153,7 +153,8 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
+                        onclick="ToyShop.Top.topToggleBtn();">
                     <i class="fa fa-bars"></i>
                 </button>
 
@@ -316,15 +317,16 @@
                         <a class="nav-link dropdown-toggle" href="javascript:;" id="userDropdown" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $adminTopInfo['adminName'] ?></span>
+                            <span
+                                class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $adminTopInfo['adminName'] ?></span>
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="javascript:;">
+                            <a class="dropdown-item" href="/admin/account">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                프로필
+                                계정 설정
                             </a>
                             <a class="dropdown-item" href="javascript:;">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>

@@ -9,8 +9,6 @@ include base_path('resources/views/admin/') . 'top.php';
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">오늘의 통계</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
     <!-- Content Row -->
@@ -22,10 +20,12 @@ include base_path('resources/views/admin/') . 'top.php';
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings
-                                (Monthly)
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                매출
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                345,000원
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -41,10 +41,12 @@ include base_path('resources/views/admin/') . 'top.php';
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
-                                (Annual)
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                순이익
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                145,000원
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -60,7 +62,9 @@ include base_path('resources/views/admin/') . 'top.php';
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                할일
+                            </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
@@ -87,8 +91,8 @@ include base_path('resources/views/admin/') . 'top.php';
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending
-                                Requests
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                신규 문의
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                         </div>
