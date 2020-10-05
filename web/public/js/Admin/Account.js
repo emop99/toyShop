@@ -7,11 +7,13 @@ ToyShop.Account = new function () {
 
         if (nowPasswd.val() === '') {
             alert('비밀번호를 입력해주세요.');
+            nowPasswd.focus();
             return true;
         } else if (newPasswd.val() && newPasswd.val() !== newPasswdCheck.val()) {
             alert('새 비밀번호를 확인해주세요.');
             return true;
         } else if (name.val() === '') {
+            name.focus();
             alert('이름을 입력해주세요.');
             return true;
         }

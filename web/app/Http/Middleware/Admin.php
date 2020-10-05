@@ -15,7 +15,12 @@ class Admin
             $url = $url[2];
         }
 
-        if (empty($request->session()->get('adminInfo')) && $request->method() == 'GET' && $url !== 'login') {
+        $checkPage = [
+            'login',
+            'join'
+        ];
+
+        if (empty($request->session()->get('adminInfo')) && $request->method() == 'GET' && !in_array($url, $checkPage)) {
             header('location: ' . '/admin/login');
             exit;
         } elseif (!empty($request->session()->get('adminInfo')) && $url === 'login' && $request->method() == 'GET') {
