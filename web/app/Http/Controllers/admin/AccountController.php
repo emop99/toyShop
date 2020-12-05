@@ -13,9 +13,7 @@ use App\Http\Controllers\RequestControl;
 
 class AccountController
 {
-    use RequestControl;
-    use ViewControl;
-    use AdminTopValue;
+    use RequestControl, ViewControl, AdminTopValue;
 
     public function index(Request $request)
     {
@@ -33,6 +31,9 @@ class AccountController
         ]);
     }
 
+    /**
+     * 회원 정보 수정 ajax
+     */
     public function accountInfoSave()
     {
         $returnData = [

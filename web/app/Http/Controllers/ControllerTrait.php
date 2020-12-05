@@ -15,7 +15,7 @@ trait ControllerTrait
     private $folderPath = '';
     private $className = '';
 
-    public function getControllerClass()
+    public function getControllerClass(): string
     {
         $this->className = ucwords($this->className) . 'Controller';
         $fileTail = '.php';

@@ -29,6 +29,7 @@ class JoinController
     {
         $data = $this->request->all();
 
+        /* @var AdminList $adminList */
         $adminList           = new AdminList();
         $adminList->Name     = $data['Name'];
         $adminList->Password = hash('sha256', $data['Password']);
