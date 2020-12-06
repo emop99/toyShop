@@ -16,8 +16,8 @@ class TableAdminloginlog extends Migration
         Schema::create('table_adminloginlog', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->collation = 'utf8mb4_unicode_ci';
-            $table->increments('No')->index();
-            $table->integer('AdminNo');
+            $table->increments('No');
+            $table->integer('AdminNo')->index();
             $table->string('Ip');
             $table->timestamp('LoginTime');
         });

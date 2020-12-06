@@ -24,7 +24,7 @@ include base_path('resources/views/admin/') . 'top.php';
                                 매출
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                345,000원
+                                <?= number_format($todayStatistics->PriceSum + $todayStatistics->ShipCostSum) ?>원
                             </div>
                         </div>
                         <div class="col-auto">
@@ -45,7 +45,7 @@ include base_path('resources/views/admin/') . 'top.php';
                                 순이익
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                145,000원
+                                <?= number_format($todayStatistics->PriceSum) ?>원
                             </div>
                         </div>
                         <div class="col-auto">
@@ -63,18 +63,19 @@ include base_path('resources/views/admin/') . 'top.php';
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                할일
+                                미배송 건수
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        <?= number_format($todayNonDeliveryCnt)?> 건
                                     </div>
                                 </div>
+<!--                                <div class="col">-->
+<!--                                    <div class="progress progress-sm mr-2">-->
+<!--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-auto">

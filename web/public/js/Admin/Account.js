@@ -1,4 +1,8 @@
 ToyShop.Account = new function () {
+
+    /**
+     * 관리자 정보 수정
+     */
     this.saveInfo = function () {
         var nowPasswd = $('#nowPasswd');
         var newPasswd = $('#newPasswd');

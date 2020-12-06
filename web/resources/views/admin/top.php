@@ -127,9 +127,9 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="/admin/order">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+                <span>주문 관리</span></a>
         </li>
 
         <!-- Divider -->
@@ -328,10 +328,10 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 계정 설정
                             </a>
-                            <a class="dropdown-item" href="javascript:;">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                설정
-                            </a>
+                            <!--                            <a class="dropdown-item" href="javascript:;">-->
+                            <!--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                            <!--                                설정-->
+                            <!--                            </a>-->
                             <a class="dropdown-item" href="/admin/loginlog">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 접속 로그

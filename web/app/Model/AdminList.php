@@ -23,9 +23,9 @@ class AdminList extends Model
     protected $table = 'table_adminlist';
     protected $hidden = ['Password'];
 
-    protected $Name;
-    protected $Email;
-    protected $Password;
-    protected $created_at;
-    protected $updated_at;
+    protected string $Name;
+    protected string $Email;
+    protected string $Password;
+    protected string $created_at;
+    protected string $updated_at;
 }

@@ -1,0 +1,3 @@
+ToyShop.Order = new function () {
+    
+};

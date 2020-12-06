@@ -3,18 +3,15 @@
 
 namespace App\Http\Controllers\admin;
 
-
 use Illuminate\Http\Request;
 use App\Model\order\OrderManagement;
 use App\Http\Controllers\ViewControl;
 use App\Http\Controllers\AdminTopValue;
 use App\Http\Controllers\RequestControl;
 
-class MainController
+class OrderController
 {
-    use RequestControl;
-    use ViewControl;
-    use AdminTopValue;
+    use RequestControl, ViewControl, AdminTopValue;
 
     public function index(Request $request)
     {
@@ -26,10 +23,9 @@ class MainController
     {
         $this->setAdminTopInfo($this->request);
 
-        return view('admin.main', [
+        return view('admin.order.order', [
             'adminTopInfo' => $this->adminTopInfo,
-            'todayStatistics' => (new OrderManagement())->todayStatistics(),
-            'todayNonDeliveryCnt' => (new OrderManagement())->todayNonDeliveryCnt()
+            'tableList'    => (new OrderManagement())->getOrderList($this->request->all())
         ]);
     }
 }

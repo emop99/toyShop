@@ -27,7 +27,7 @@ class AccountController
 
         return view('admin.account', [
             'adminTopInfo' => $this->adminTopInfo,
-            'accountInfo'  => AdminList::where('No', $this->adminTopInfo['adminNo'])->first()->toArray()
+            'accountInfo'  => AdminList::find($this->adminTopInfo['adminNo'])->toArray()
         ]);
     }
 
@@ -55,10 +55,15 @@ class AccountController
             exit;
         }
 
+        $password = $data['OldPassword'];
+        if ($data['Password']) {
+            $password = $data['Password'];
+        }
+
         AdminList::where('No', $adminNo)
             ->update([
                 'Name'     => $data['Name'],
-                'Password' => DB::Raw('sha2("' . $data['Password'] . '", 256)'),
+                'Password' => DB::Raw('sha2("' . $password . '", 256)'),
             ]);
 
         $returnData['msg'] = '수정되었습니다.';
