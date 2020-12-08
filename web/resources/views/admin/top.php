@@ -17,6 +17,8 @@
     <script src="/js/jQuery v3.5.1.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/ToyShop.js?<?= CASH ?>"></script>
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
 </head>
 
 <body id="page-top">

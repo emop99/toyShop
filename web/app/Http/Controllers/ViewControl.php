@@ -3,7 +3,10 @@
 
 namespace App\Http\Controllers;
 
-
+/**
+ * Trait ViewControl
+ * @package App\Http\Controllers
+ */
 trait ViewControl
 {
     public function view()
@@ -18,5 +21,14 @@ trait ViewControl
         }
 
         return $view;
+    }
+
+    /**
+     * @param $returnData
+     */
+    public function jsonEchoExit($returnData)
+    {
+        echo json_encode($returnData);
+        exit;
     }
 }

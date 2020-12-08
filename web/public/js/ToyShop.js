@@ -3,6 +3,7 @@ var ToyShop = {};
 ToyShop.Top = new function () {
 
     /**
+     * ajax
      * @param option
      * @param data
      * @param callBack
@@ -39,6 +40,9 @@ ToyShop.Top = new function () {
         });
     };
 
+    /**
+     * 로그아웃 버튼 이벤트
+     */
     this.adminLogOut = function () {
         var sendData = {
             'mode': 'logout'
@@ -49,6 +53,9 @@ ToyShop.Top = new function () {
         });
     };
 
+    /**
+     * Sidebar Toggler 버튼
+     */
     this.topToggleBtn = function () {
         var $sidbar = $(".sidebar");
         $("body").toggleClass("sidebar-toggled");
@@ -56,6 +63,20 @@ ToyShop.Top = new function () {
 
         if ($sidbar.hasClass("toggled")) {
             $('.sidebar .collapse').collapse('hide');
+        }
+    };
+
+    /**
+     * 체크박스 전체선택|해제 이벤트
+     * @param $this
+     */
+    this.checkBoxAllCheck = function ($this) {
+        var name = $this.data('name');
+
+        if ($this.is(':checked')) {
+            $('input[name^="' + name + '"]').prop('checked', true);
+        } else {
+            $('input[name^="' + name + '"]').prop('checked', false);
         }
     };
 };
