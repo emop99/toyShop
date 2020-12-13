@@ -27,7 +27,7 @@ class TableGoods extends Migration
             $table->timestamps();
         });
         Schema::table('table_goods', function (Blueprint $table) {
-            $table->string('created_at')->index();
+            $table->string('created_at')->index()->change();
         });
     }
 

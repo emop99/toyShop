@@ -79,4 +79,21 @@ ToyShop.Top = new function () {
             $('input[name^="' + name + '"]').prop('checked', false);
         }
     };
+
+    /**
+     * 검색 버튼 이벤트
+     */
+    this.searchBtn = function () {
+        $('#searchForm').submit();
+    };
 };
+
+$(function () {
+    $('.calendar').datepicker();
+
+    $('.enterSearch').on('keydown', function (e) {
+        if (e.keyCode === 13) {
+            ToyShop.Top.searchBtn();
+        }
+    });
+});

@@ -18,43 +18,49 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $OrderHp 주문자 번호
  * @property string $RecvName 수령인 명
  * @property string $RecvHp 수령인 번호
- * @property string $ShippingDate 배송시작일
+ * @property string $ShipingDate 배송시작일
  * @property string $GoodName 상품명
  * @property int $Price 결제 금액
  * @property int $ShipCost 배송비
  * @property int $PayMethod 결제 방식
  * @property string $OrderData 주문 데이터 JSON
  * @property string $OrderIp 주문자 IP
+ * @property int $ShipNum 송장번호
+ * @property string $RecvAddrNum 수령 우편 번호
  * @property string $RecvAddr1 수령 주소
  * @property string $RecvAddr2 수령 주소
  * @property string $created_at 생성일
  * @property string $updated_at 수정일
+ * @property string $ShipingEndDate 배송완료일
  */
 class Order extends Model
 {
     public $primaryKey = 'OrderNum';
-    public $keyType = 'string';
-    public $table = 'table_order';
+    public $keyType    = 'string';
+    public $table      = 'table_order';
 
-    protected int $OrderNum;
-    protected int $MemberNo;
-    protected int $GoodNo;
+    protected int    $OrderNum;
+    protected int    $MemberNo;
+    protected int    $GoodNo;
     protected string $OrderState;
     protected string $OrderName;
     protected string $OrderHp;
     protected string $RecvName;
     protected string $RecvHp;
-    protected string $ShippingDate;
+    protected string $ShipingDate;
     protected string $GoodName;
-    protected int $Price;
-    protected int $ShipCost;
-    protected int $PayMethod;
+    protected int    $Price;
+    protected int    $ShipCost;
+    protected int    $PayMethod;
+    protected int    $ShipNum;
     protected string $OrderData;
     protected string $OrderIp;
+    protected string $RecvAddrNum;
     protected string $RecvAddr1;
     protected string $RecvAddr2;
     protected string $created_at;
     protected string $updated_at;
+    protected string $ShipingEndDate;
 
     # 주문 상태
     /** 미결제 상태 */
@@ -67,23 +73,27 @@ class Order extends Model
     const ORDER_STATE_SHIP_ING = 3;
     /** 배송완료 상태 */
     const ORDER_STATE_SHIP_END = 4;
+    /** 취소 */
+    const ORDER_STATE_CANCEL = 5;
 
     /**
      * 주문 상태 리스트
      * @return string[]
      */
-    public function orderStateList(): array
+    static public function orderStateList(): array
     {
         return [
             self::ORDER_STATE_UNPAID     => '미결제',
             self::ORDER_STATE_PAID       => '결제완료',
             self::ORDER_STATE_SHIP_READY => '배송준비',
             self::ORDER_STATE_SHIP_ING   => '배송중',
-            self::ORDER_STATE_SHIP_END   => '배송완료'
+            self::ORDER_STATE_SHIP_END   => '배송완료',
+            self::ORDER_STATE_CANCEL     => '취소',
         ];
     }
 
     # 결제 수단
+
     /** 카드 결제 */
     const ORDER_METHOD_CARD = 1;
     /** 무통장 입금 */
@@ -92,7 +102,7 @@ class Order extends Model
     /**
      * @return string[]
      */
-    public function payMethodList(): array
+    static public function payMethodList(): array
     {
         return [
             self::ORDER_METHOD_CARD => '카드',
@@ -105,9 +115,36 @@ class Order extends Model
      * @param string $day
      * @return string
      */
-    public function createOrderNum($day): string
+    static public function createOrderNum(string $day): string
     {
         $microtime = explode('.', explode(' ', microtime())[0])[1];
-        return date('ymd', strtotime($day)).'-'.$microtime.rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+        return date('ymd', strtotime($day)) . '-' . $microtime . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+    }
+
+    static public function getColumnList()
+    {
+        return [
+            'OrderNum',
+            'MemberNo',
+            'GoodNo',
+            'OrderState',
+            'OrderName',
+            'OrderHp',
+            'RecvName',
+            'RecvHp',
+            'ShipingDate',
+            'GoodName',
+            'Price',
+            'ShipCost',
+            'PayMethod',
+            'ShipNum',
+            'OrderIp',
+            'RecvAddrNum',
+            'RecvAddr1',
+            'RecvAddr2',
+            'created_at',
+            'updated_at',
+            'ShipingEndDate',
+        ];
     }
 }

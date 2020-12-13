@@ -13,9 +13,12 @@
     <link href="/css/all.css" rel="stylesheet" type="text/css">
     <link href="/css/sb-admin-2.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/jquery-ui.css" rel="stylesheet">
 
     <script src="/js/jQuery v3.5.1.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datepicker-ko.js"></script>
     <script src="/js/ToyShop.js?<?= CASH ?>"></script>
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/sb-admin-2.min.js"></script>

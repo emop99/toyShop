@@ -22,12 +22,13 @@ class TableMember extends Migration
             $table->string('Hp', 20)->index();
             $table->integer('IsMember')->index();
             $table->string('Password', 200)->nullable();
-            $table->string('Addr1', 200);
-            $table->string('Addr2', 200);
+            $table->string('AddrNum', 10)->nullable();
+            $table->string('Addr1', 200)->nullable();
+            $table->string('Addr2', 200)->nullable();
             $table->timestamps();
         });
         Schema::table('table_member', function (Blueprint $table) {
-            $table->string('created_at')->index();
+            $table->string('created_at')->index()->change();
         });
     }
 

@@ -24,19 +24,22 @@ class TableOrder extends Migration
             $table->string('OrderHp', 20)->index();
             $table->string('RecvName', 100)->index();
             $table->string('RecvHp', 20)->index();
-            $table->dateTime('ShippingDate')->index()->nullable();
             $table->integer('PayMethod')->index();
             $table->string('GoodName', 200);
             $table->integer('Price');
             $table->integer('ShipCost');
             $table->longText('OrderData');
             $table->string('OrderIp', 100);
+            $table->string('RecvAddrNum', 10);
             $table->string('RecvAddr1', 200);
             $table->string('RecvAddr2', 200);
+            $table->timestamp('ShipingDate')->index()->nullable();
+            $table->string('ShipNum', 20)->nullable();
+            $table->timestamp('ShipingEndDate')->index()->nullable();
             $table->timestamps();
         });
         Schema::table('table_order', function (Blueprint $table) {
-            $table->string('created_at')->index();
+            $table->string('created_at')->index()->change();
         });
     }
 

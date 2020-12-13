@@ -1,12 +1,8 @@
 <?php
-
-use App\Model\Order;
-
 include base_path('resources/views/admin/') . 'top.php';
 
 /** @var \Illuminate\Contracts\Pagination\Paginator $tableList */
-
-$totalCnt = $tableList->total();
+/** @var \App\Model\order\OrderSearch $orderSearch */
 ?>
 <style>
     .container-fluid table {
@@ -41,25 +37,66 @@ $totalCnt = $tableList->total();
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="10%">
-                        <col width="*">
+                        <col width="40%">
                         <col width="10%">
-                        <col width="*">
+                        <col width="40%">
                     </colgroup>
                     <tr>
-                        <td><b>기간</b></td>
-                        <td>2020-10-10 ~ 2020-10-10</td>
-                        <td>주문 번호</td>
-                        <td>2020-10-10 ~ 2020-10-10</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
+                        <td><b>주문일</b></td>
+                        <td colspan="3">
+                            <input type="text" class="form-control h-25 calendar" name="searchDateS" style="width: 35%; display: inline-block;"
+                                   value="<?= date('Y-m-d', strtotime($orderSearch->searchDateS)) ?>">
+                            ~
+                            <input type="text" class="form-control h-25 calendar" name="searchDateE" style="width: 35%; display: inline-block;"
+                                   value="<?= date('Y-m-d', strtotime($orderSearch->searchDateE)) ?>">
                         </td>
                     </tr>
                     <tr>
+                        <td><b>주문 상태</b></td>
+                        <td>
+                            <select class="form-control h-25" style="display: unset !important;" name="searchState">
+                                <option value="">전체</option>
+                                <?php
+                                foreach ($orderStateList as $value => $name) {
+                                    echo '<option value = "' . $value . '" ' . ($orderSearch->searchState === $value ? 'selected' : '') . '> ' . $name . '</option >';
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <td><b>키워드 검색</b></td>
+                        <td>
+                            <select class="form-control h-25" style="width: 25%; display: unset !important;" name="searchKey">
+                                <option value="">전체</option>
+                                <option value="OrderName" <?= $orderSearch->searchKey == 'OrderName' ? 'selected' : '' ?>>주문자명</option>
+                                <option value="OrderHp" <?= $orderSearch->searchKey == 'OrderHp' ? 'selected' : '' ?>>주문자 핸드폰</option>
+                                <option value="RecvName" <?= $orderSearch->searchKey == 'RecvName' ? 'selected' : '' ?>>수령인명</option>
+                                <option value="RecvHp" <?= $orderSearch->searchKey == 'RecvHp' ? 'selected' : '' ?>>수형인 핸드폰</option>
+                                <option value="GoodName" <?= $orderSearch->searchKey == 'GoodName' ? 'selected' : '' ?>>상품명</option>
+                            </select>
+                            <input type="text" name="searchText" class="form-control h-25 enterSearch" style="width: 65%; display: unset !important;"
+                                   value="<?= $orderSearch->searchText ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>결제 수단</b></td>
+                        <td>
+                            <select class="form-control h-25" style="display: unset !important;" name="searchPayMethod">
+                                <option value="">전체</option>
+                                <?php
+                                foreach ($payMethodList as $value => $name) {
+                                    echo '<option value = "' . $value . '" ' . ($orderSearch->searchPayMethod === $value ? 'selected' : '') . '> ' . $name . '</option >';
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <td><b>주문 번호</b></td>
+                        <td>
+                            <input type="text" class="form-control h-25 enterSearch" name="searchOrderNo" value="<?= $orderSearch->searchOrderNo ?>">
+                        </td>
                     </tr>
                 </table>
                 <div style="display: flex; justify-content: center;">
-                    <a href="javascript:;" class="btn btn-primary btn-user btn-block" style="width: 100px;">
+                    <a href="javascript:;" class="btn btn-primary btn-user btn-block" style="width: 100px;" onclick="ToyShop.Top.searchBtn();">
                         검색
                     </a>
                 </div>
@@ -72,9 +109,25 @@ $totalCnt = $tableList->total();
             <h6 class="m-0 font-weight-bold text-primary">주문 리스트</h6>
         </div>
         <div class="card-body">
-            <div class="row">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-sm-12 col-md-2">
+                    총 : <?= number_format($tableList->total()) ?>건
+                </div>
                 <div class="col-sm-12 col-md-6">
-                    총 : <?= number_format($totalCnt) ?>건
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            선택주문 상태변경
+                        </button>
+                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                            <?php
+                            foreach ($orderStateList as $stateKey => $stateRow) { ?>
+                                <a class="dropdown-item" href="javascript:;"
+                                   onclick="ToyShop.Order.multiOrderStateChange(<?= $stateKey ?>);"><?= $stateRow ?></a>
+                                <?php
+                            } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive" style="white-space: nowrap;">
@@ -89,6 +142,7 @@ $totalCnt = $tableList->total();
                         <th>주문 번호</th>
                         <th>주문 날짜</th>
                         <th>주문 상태</th>
+                        <th>송장번호</th>
                         <th>상품명</th>
                         <th>주문자</th>
                         <th>주문자 핸드폰번호</th>
@@ -105,24 +159,24 @@ $totalCnt = $tableList->total();
                     <?php
                     $cnt = 0;
                     foreach ($tableList as $key => $listRow) {
-                        /** @var Order $listRow */ ?>
+                        /** @var \App\Model\Order $listRow */ ?>
                         <tr data-OrderNum="<?= $listRow->OrderNum ?>">
                             <td>
                                 <input type="checkbox" name="orderCheck[<?= $listRow->OrderNum ?>]"
                                        data-OrderNum="<?= $listRow->OrderNum ?>">
                             </td>
-                            <td><?= 1 + $totalCnt - $tableList->firstItem() + $key ?></td>
+                            <td><?= 1 + $tableList->total() - $tableList->firstItem() + $key ?></td>
                             <td><?= $listRow->OrderNum ?></td>
                             <td><?= $listRow->created_at ?></td>
                             <td>
-                                <div class="dropdown mb-4">
+                                <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
-                                        <?= (new Order())->orderStateList()[$listRow->OrderState] ?>
+                                        <?= $orderStateList[$listRow->OrderState] ?>
                                     </button>
                                     <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                         <?php
-                                        foreach ((new Order())->orderStateList() as $stateKey => $stateRow) {
+                                        foreach ($orderStateList as $stateKey => $stateRow) {
                                             if ($listRow->OrderState == $stateKey) {
                                                 continue;
                                             } ?>
@@ -133,17 +187,18 @@ $totalCnt = $tableList->total();
                                     </div>
                                 </div>
                             </td>
+                            <td><?= $listRow->ShipNum ?></td>
                             <td><?= $listRow->GoodName ?></td>
-                            <td><?= $listRow->OrderName ?></td>
-                            <td><?= $listRow->OrderHp ?></td>
-                            <td><?= $listRow->RecvName ?></td>
-                            <td><?= $listRow->RecvHp ?></td>
-                            <td><?= $listRow->RecvAddr1 . ' ' . $listRow->RecvAddr2 ?></td>
-                            <td><?= $listRow->Price ?></td>
-                            <td><?= $listRow->ShipCost ?></td>
-                            <td><?= (new Order)->payMethodList()[$listRow->PayMethod] ?></td>
+                            <td><?= htmlspecialchars($listRow->OrderName) ?></td>
+                            <td><?= \App\Util\HpSplit::phone($listRow->OrderHp) ?></td>
+                            <td><?= htmlspecialchars($listRow->RecvName) ?></td>
+                            <td><?= \App\Util\HpSplit::phone($listRow->RecvHp) ?></td>
+                            <td><?= htmlspecialchars($listRow->RecvAddrNum) . ' ' . htmlspecialchars($listRow->RecvAddr1) . ' ' . htmlspecialchars($listRow->RecvAddr2) ?></td>
+                            <td><?= number_format($listRow->Price) ?></td>
+                            <td><?= number_format($listRow->ShipCost) ?></td>
+                            <td><?= $payMethodList[$listRow->PayMethod] ?></td>
                             <td>
-                                <a href="#" class="btn btn-info btn-circle btn-sm">
+                                <a href="javascript:;" class="btn btn-info btn-circle btn-sm">
                                     <i class="fas fa-info-circle"></i>
                                 </a>
                             </td>
@@ -152,7 +207,7 @@ $totalCnt = $tableList->total();
                         $cnt++;
                     }
                     if (empty($tableList->items())) {
-                        echo '<tr><td colspan="14" class="text-center">조회된 정보가 없습니다.</td></tr>';
+                        echo '<tr><td colspan="15" class="text-center">조회된 정보가 없습니다.</td></tr>';
                     }
                     ?>
                     </tbody>

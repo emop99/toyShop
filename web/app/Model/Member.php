@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $Hp 회원 전화번호
  * @property string Password 회원 비밀번호 SHA256
  * @property int $IsMember 비회원 회원 체크
+ * @property string $AddrNum 우편주소
  * @property string $Addr1 회원 주소1
  * @property string $Addr2 회원 주소2
  */
@@ -31,6 +32,7 @@ class Member extends Model
     protected string $Hp;
     protected string $Password;
     protected int $IsMember;
+    protected string $AddrNum;
     protected string $Addr1;
     protected string $Addr2;
 

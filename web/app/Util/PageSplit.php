@@ -11,7 +11,7 @@ namespace App\Util;
  */
 class PageSplit
 {
-    /**[
+    /**
      * @var null|PageSplit
      */
     static protected $instance = null;

@@ -22,4 +22,35 @@ ToyShop.Order = new function () {
         });
     };
 
+    /**
+     * 선택 주문 상태 변경 이벤트
+     */
+    this.multiOrderStateChange = function (changeState) {
+        var checkedList = $('input[name^="orderCheck["]:checked');
+        if (!checkedList.length) {
+            alert('선택된 주문이 없습니다.');
+            return true;
+        }
+
+        if (!confirm('선택한 주문들의 상태를 바꾸시겠습니까?')) {
+            return true;
+        }
+
+        var orderNumList = [];
+        checkedList.each(function () {
+            orderNumList.push($(this).data('ordernum'));
+        });
+
+        var sendData = {
+            'mode': 'multiOrderStateChange',
+            'orderNumList': orderNumList,
+            'changeState': changeState
+        };
+
+        ToyShop.Top.ajax({}, sendData, function (returnData) {
+            alert(returnData.msg);
+            location.reload();
+        });
+    };
+
 };

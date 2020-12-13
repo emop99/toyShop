@@ -28,8 +28,8 @@ class MainController
 
         return view('admin.main', [
             'adminTopInfo' => $this->adminTopInfo,
-            'todayStatistics' => (new OrderManagement())->todayStatistics(),
-            'todayNonDeliveryCnt' => (new OrderManagement())->todayNonDeliveryCnt()
+            'todayStatistics' => OrderManagement::todayStatistics(),
+            'todayNonDeliveryCnt' => OrderManagement::todayNonDeliveryCnt()
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Model\Order;
 use Illuminate\Http\Request;
+use App\Model\order\OrderSearch;
 use App\Model\order\OrderManagement;
 use App\Http\Controllers\ViewControl;
 use App\Http\Controllers\AdminTopValue;
@@ -24,9 +25,23 @@ class OrderController
     {
         $this->setAdminTopInfo($this->request);
 
+        $orderSearch                  = new OrderSearch();
+        $orderSearch->searchState     = $this->request->get('searchState');
+        $orderSearch->searchDateS     = $this->request->get('searchDateS');
+        $orderSearch->searchDateE     = $this->request->get('searchDateE');
+        $orderSearch->searchKey       = $this->request->get('searchKey');
+        $orderSearch->searchText      = $this->request->get('searchText');
+        $orderSearch->searchPayMethod = $this->request->get('searchPayMethod');
+        $orderSearch->searchOrderNo   = $this->request->get('searchOrderNo');
+
+        $tableList = $orderSearch->getOrderList();
+
         return view('admin.order.order', [
-            'adminTopInfo' => $this->adminTopInfo,
-            'tableList'    => (new OrderManagement())->getOrderList($this->request->all())
+            'adminTopInfo'   => $this->adminTopInfo,
+            'tableList'      => $tableList,
+            'orderSearch'    => $orderSearch,
+            'orderStateList' => Order::orderStateList(),
+            'payMethodList'  => Order::payMethodList()
         ]);
     }
 
@@ -50,10 +65,33 @@ class OrderController
             $this->jsonEchoExit($returnData);
         }
 
-        /** @var Order $order */
-        $order             = Order::find($requestData['orderNum']);
-        $order->OrderState = $requestData['changeState'];
-        $order->save();
+        OrderManagement::stateChange($requestData['changeState'], [$requestData['orderNum']]);
+
+        $returnData['msg'] = '변경되었습니다.';
+        $this->jsonEchoExit($returnData);
+    }
+
+    /**
+     * 선택 주문 상태 변경
+     * 필수값
+     * orderNumList
+     * changeState
+     */
+    public function multiOrderStateChange()
+    {
+        $returnData = [
+            'state' => 1,
+            'msg'   => ''
+        ];
+
+        $requestData = $this->request->all();
+
+        if (!isset($requestData['orderNumList']) || !isset($requestData['changeState'])) {
+            $returnData['msg'] = '잘못된 요청입니다.';
+            $this->jsonEchoExit($returnData);
+        }
+
+        OrderManagement::stateChange($requestData['changeState'], $requestData['orderNumList']);
 
         $returnData['msg'] = '변경되었습니다.';
         $this->jsonEchoExit($returnData);

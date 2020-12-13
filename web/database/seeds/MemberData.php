@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Model\Member;
@@ -18,6 +19,7 @@ class MemberData extends Seeder
         foreach ($testData as $dataRow) {
             $member           = new Member();
             $member->Name     = $dataRow['name'];
+            $member->AddrNum  = 38712;
             $member->Addr1    = $dataRow['addr1'];
             $member->Addr2    = $dataRow['addr2'];
             $member->IsMember = 0;
