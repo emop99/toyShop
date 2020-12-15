@@ -80,7 +80,7 @@ class Order extends Model
      * 주문 상태 리스트
      * @return string[]
      */
-    static public function orderStateList(): array
+    public static function orderStateList(): array
     {
         return [
             self::ORDER_STATE_UNPAID     => '미결제',
@@ -102,7 +102,7 @@ class Order extends Model
     /**
      * @return string[]
      */
-    static public function payMethodList(): array
+    public static function payMethodList(): array
     {
         return [
             self::ORDER_METHOD_CARD => '카드',
@@ -115,13 +115,13 @@ class Order extends Model
      * @param string $day
      * @return string
      */
-    static public function createOrderNum(string $day): string
+    public static function createOrderNum(string $day): string
     {
         $microtime = explode('.', explode(' ', microtime())[0])[1];
         return date('ymd', strtotime($day)) . '-' . $microtime . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
     }
 
-    static public function getColumnList()
+    public static function getColumnList()
     {
         return [
             'OrderNum',

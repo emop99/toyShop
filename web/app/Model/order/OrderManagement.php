@@ -17,7 +17,7 @@ class OrderManagement
      * 대쉬보드 매출 순이익 금액
      * @return object
      */
-    static public function todayStatistics(): object
+    public static function todayStatistics(): object
     {
         return DB::table('table_order')
                  ->where('created_at', '>=', date('Y-m-d 00:00:00'))
@@ -30,7 +30,7 @@ class OrderManagement
      * 대쉬보드 미배송 건수
      * @return int
      */
-    static public function todayNonDeliveryCnt(): int
+    public static function todayNonDeliveryCnt(): int
     {
         return DB::table('table_order')
                  ->where('created_at', '>=', date('Y-m-d 00:00:00'))
@@ -43,7 +43,7 @@ class OrderManagement
      * @param int $changeState
      * @param array $orderNumList
      */
-    static public function stateChange(int $changeState, array $orderNumList)
+    public static function stateChange(int $changeState, array $orderNumList)
     {
         $now          = date('Y-m-d H:i:s');
         $updateColumn = [

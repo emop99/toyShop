@@ -19,17 +19,19 @@ use App\Model\Order;
  * @property int $maxPageCnt 최대 검색 개수 기본:25
  * @property int $searchPayMethod 결제수단 검색
  * @property string $searchOrderNo 검색할 주문 번호
+ * @property int $excelDown 엑셀다운시 1
  */
 class OrderSearch
 {
-    private string $searchKey          = '';
-    private string $searchText         = '';
-    private int    $searchState        = -1;
-    private string $searchDateS        = '';
-    private string $searchDateE        = '';
-    private int    $maxPageCnt         = 25;
-    private int    $searchPayMethod    = -1;
-    private string $searchOrderNo      = '';
+    private string $searchKey       = '';
+    private string $searchText      = '';
+    private int    $searchState     = -1;
+    private string $searchDateS     = '';
+    private string $searchDateE     = '';
+    private int    $maxPageCnt      = 25;
+    private int    $searchPayMethod = -1;
+    private string $searchOrderNo   = '';
+    private int    $excelDown       = 0;
 
     public function __construct()
     {
@@ -90,6 +92,10 @@ class OrderSearch
             date('Y-m-d 23:59:59', strtotime($this->searchDateE))
         ])->orderBy('created_at', 'desc');
 
-        return $order->paginate($this->maxPageCnt);
+        if ($this->excelDown) {
+            return $order->get();
+        } else {
+            return $order->paginate($this->maxPageCnt);
+        }
     }
 }

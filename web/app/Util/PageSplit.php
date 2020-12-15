@@ -6,29 +6,15 @@ namespace App\Util;
 /**
  * Class PageSplit
  * @package App
- *
- * @property string $requestUrl
  */
 class PageSplit
 {
-    /**
-     * @var null|PageSplit
-     */
-    static protected $instance = null;
-
-    static public function getInstance()
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new static();
-        }
-        return self::$instance;
-    }
-
-    private $requestUrl = '';
+    /** @var string $requestUrl */
+    protected static string $requestUrl = '';
 
     public function __construct()
     {
-        $this->requestUrl = $_SERVER['REQUEST_URI'];
+        static::$requestUrl = $_SERVER['REQUEST_URI'];
     }
 
     public function __get($name)
@@ -42,8 +28,8 @@ class PageSplit
     /**
      * @return null|string[]
      */
-    public function getNowUrl()
+    public static function getNowUrl(): array
     {
-        return explode('/', $this->requestUrl);
+        return explode('/', static::$requestUrl);
     }
 }

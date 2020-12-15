@@ -9,7 +9,7 @@ class Admin
 {
     public function handle($request, Closure $next)
     {
-        $url = PageSplit::getInstance()->getNowUrl();
+        $url = PageSplit::getNowUrl();
 
         if (array_key_exists(2, $url)) {
             $url = $url[2];

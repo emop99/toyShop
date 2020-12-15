@@ -16,6 +16,8 @@ trait ViewControl
         if ($this->request->method() == 'POST') {
             $mode = $this->request->input('mode');
             $view = $this->$mode($this->request);
+        } elseif ($this->request->get('excelDown') == 1) {
+            $view = $this->excelDown();
         } else {
             $view = $this->show();
         }

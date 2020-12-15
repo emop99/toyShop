@@ -86,6 +86,13 @@ ToyShop.Top = new function () {
     this.searchBtn = function () {
         $('#searchForm').submit();
     };
+
+    /**
+     * 엑셀 다운로드 버튼 이벤트
+     */
+    this.excelDownBtn = function () {
+        window.open(location.pathname + location.search + '&excelDown=1');
+    }
 };
 
 $(function () {

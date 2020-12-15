@@ -6,7 +6,9 @@ namespace App\Http\Controllers\admin;
 use App\Model\Order;
 use Illuminate\Http\Request;
 use App\Model\order\OrderSearch;
+use App\Exports\OrderExcelExports;
 use App\Model\order\OrderManagement;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\ViewControl;
 use App\Http\Controllers\AdminTopValue;
 use App\Http\Controllers\RequestControl;
@@ -43,6 +45,24 @@ class OrderController
             'orderStateList' => Order::orderStateList(),
             'payMethodList'  => Order::payMethodList()
         ]);
+    }
+
+    /**
+     * 주문 엑셀 다운로드
+     */
+    public function excelDown()
+    {
+        $orderSearch                  = new OrderSearch();
+        $orderSearch->searchState     = $this->request->get('searchState');
+        $orderSearch->searchDateS     = $this->request->get('searchDateS');
+        $orderSearch->searchDateE     = $this->request->get('searchDateE');
+        $orderSearch->searchKey       = $this->request->get('searchKey');
+        $orderSearch->searchText      = $this->request->get('searchText');
+        $orderSearch->searchPayMethod = $this->request->get('searchPayMethod');
+        $orderSearch->searchOrderNo   = $this->request->get('searchOrderNo');
+        $orderSearch->excelDown       = 1;
+
+        return Excel::download(new OrderExcelExports($orderSearch->getOrderList()), 'order_'.date('Y-m-d').'.xlsx');
     }
 
     /**

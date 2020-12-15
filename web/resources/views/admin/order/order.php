@@ -17,7 +17,7 @@ include base_path('resources/views/admin/') . 'top.php';
         text-align: center;
     }
 
-    .dropdown-toggle {
+    .f-s12 {
         font-size: 12px;
     }
 </style>
@@ -114,8 +114,8 @@ include base_path('resources/views/admin/') . 'top.php';
                     총 : <?= number_format($tableList->total()) ?>건
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-primary dropdown-toggle f-s12" type="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                             선택주문 상태변경
                         </button>
@@ -127,6 +127,11 @@ include base_path('resources/views/admin/') . 'top.php';
                                 <?php
                             } ?>
                         </div>
+                    </div>
+                    <div class="d-inline-block">
+                        <button class="btn btn-primary f-s12" onclick="ToyShop.Top.excelDownBtn();">
+                            엑셀 다운로드
+                        </button>
                     </div>
                 </div>
             </div>
