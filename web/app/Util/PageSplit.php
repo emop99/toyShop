@@ -10,11 +10,10 @@ namespace App\Util;
 class PageSplit
 {
     /** @var string $requestUrl */
-    protected static string $requestUrl = '';
+    public static string $requestUrl = '';
 
     public function __construct()
     {
-        static::$requestUrl = $_SERVER['REQUEST_URI'];
     }
 
     public function __get($name)
@@ -30,6 +29,7 @@ class PageSplit
      */
     public static function getNowUrl(): array
     {
+        static::$requestUrl = $_SERVER['REQUEST_URI'];
         return explode('/', static::$requestUrl);
     }
 }

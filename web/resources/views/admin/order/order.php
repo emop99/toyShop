@@ -34,6 +34,7 @@ include base_path('resources/views/admin/') . 'top.php';
         </div>
         <div class="card-body">
             <form id="searchForm">
+                <input type="hidden" name="maxPageCnt" id="maxPageCnt" value="<?= $orderSearch->maxPageCnt ?>">
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="10%">
@@ -110,8 +111,23 @@ include base_path('resources/views/admin/') . 'top.php';
         </div>
         <div class="card-body">
             <div class="row" style="margin-bottom: 10px;">
-                <div class="col-sm-12 col-md-2">
+                <div class="col-sm-12 col-md-1">
                     총 : <?= number_format($tableList->total()) ?>건
+                </div>
+                <div class="col-sm-12 col-md-1">
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-primary dropdown-toggle f-s12" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            최대 검색 개수
+                        </button>
+                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="javascript:;" onclick="ToyShop.Top.searchMaxCntBtn(25);">25개</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="ToyShop.Top.searchMaxCntBtn(50);">50개</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="ToyShop.Top.searchMaxCntBtn(100);">100개</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="ToyShop.Top.searchMaxCntBtn(500);">500개</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="ToyShop.Top.searchMaxCntBtn(1000);">1000개</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="dropdown d-inline-block">
@@ -128,6 +144,8 @@ include base_path('resources/views/admin/') . 'top.php';
                             } ?>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-12 col-md-4 text-right">
                     <div class="d-inline-block">
                         <button class="btn btn-primary f-s12" onclick="ToyShop.Top.excelDownBtn();">
                             엑셀 다운로드
@@ -203,7 +221,7 @@ include base_path('resources/views/admin/') . 'top.php';
                             <td><?= number_format($listRow->ShipCost) ?></td>
                             <td><?= $payMethodList[$listRow->PayMethod] ?></td>
                             <td>
-                                <a href="javascript:;" class="btn btn-info btn-circle btn-sm">
+                                <a href="javascript:;" class="btn btn-info btn-circle btn-sm" onclick="ToyShop.Order.orderDetailViewBtn('<?= $listRow->OrderNum ?>')">
                                     <i class="fas fa-info-circle"></i>
                                 </a>
                             </td>

@@ -53,4 +53,12 @@ ToyShop.Order = new function () {
         });
     };
 
+    /**
+     * 주문 상세보기 버튼 이벤트
+     * @param orderNum
+     */
+    this.orderDetailViewBtn = function (orderNum) {
+        location.href = '/admin/orderView?orderNum=' + orderNum;
+    };
+
 };

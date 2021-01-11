@@ -35,6 +35,7 @@ class OrderController
         $orderSearch->searchText      = $this->request->get('searchText');
         $orderSearch->searchPayMethod = $this->request->get('searchPayMethod');
         $orderSearch->searchOrderNo   = $this->request->get('searchOrderNo');
+        $orderSearch->maxPageCnt      = $this->request->get('maxPageCnt');
 
         $tableList = $orderSearch->getOrderList();
 
@@ -62,7 +63,7 @@ class OrderController
         $orderSearch->searchOrderNo   = $this->request->get('searchOrderNo');
         $orderSearch->excelDown       = 1;
 
-        return Excel::download(new OrderExcelExports($orderSearch->getOrderList()), 'order_'.date('Y-m-d').'.xlsx');
+        return Excel::download(new OrderExcelExports($orderSearch->getOrderList()), 'order_' . date('Y-m-d') . '.xlsx');
     }
 
     /**

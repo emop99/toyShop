@@ -92,7 +92,16 @@ ToyShop.Top = new function () {
      */
     this.excelDownBtn = function () {
         window.open(location.pathname + location.search + '&excelDown=1');
-    }
+    };
+
+    /**
+     * 검색 최대 개수 설정 버튼 이벤트
+     * @param cnt
+     */
+    this.searchMaxCntBtn = function (cnt) {
+        $('#maxPageCnt').val(cnt);
+        ToyShop.Top.searchBtn();
+    };
 };
 
 $(function () {

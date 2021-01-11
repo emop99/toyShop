@@ -121,30 +121,75 @@ class Order extends Model
         return date('ymd', strtotime($day)) . '-' . $microtime . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
     }
 
-    public static function getColumnList()
+    public static function getColumnList(): array
     {
         return [
-            'OrderNum',
-            'MemberNo',
-            'GoodNo',
-            'OrderState',
-            'OrderName',
-            'OrderHp',
-            'RecvName',
-            'RecvHp',
-            'ShipingDate',
-            'GoodName',
-            'Price',
-            'ShipCost',
-            'PayMethod',
-            'ShipNum',
-            'OrderIp',
-            'RecvAddrNum',
-            'RecvAddr1',
-            'RecvAddr2',
-            'created_at',
-            'updated_at',
-            'ShipingEndDate',
+            '주문 번호'    => 'OrderNum',
+            '주문 회원 번호' => 'MemberNo',
+            '주문 상품 번호' => 'GoodNo',
+            '주문 상태'    => 'OrderState',
+            '주문자 명'    => 'OrderName',
+            '주문자 번호'   => 'OrderHp',
+            '수령인 명'    => 'RecvName',
+            '수령인 번호'   => 'RecvHp',
+            '배송시작일'    => 'ShipingDate',
+            '상품명'      => 'GoodName',
+            '결제 금액'    => 'Price',
+            '배송비'      => 'ShipCost',
+            '결제 방식'    => 'PayMethod',
+            //            '주문 데이터 JSON' => 'OrderData',
+            '주문자 IP'   => 'OrderIp',
+            '송장번호'     => 'ShipNum',
+            '우편 번호'    => 'RecvAddrNum',
+            '주소'       => 'RecvAddr1',
+            '상세 주소'    => 'RecvAddr2',
+            '생성일'      => 'created_at',
+            '수정일'      => 'updated_at',
+            '배송완료일'    => 'ShipingEndDate',
+        ];
+    }
+
+    public static function getColumnNameList(): array
+    {
+        return [
+            'OrderNum'       => '주문 번호',
+            'MemberNo'       => '주문 회원 번호',
+            'GoodNo'         => '주문 상품 번호',
+            'OrderState'     => '주문 상태',
+            'OrderName'      => '주문자 명',
+            'OrderHp'        => '주문자 번호',
+            'RecvName'       => '수령인 명',
+            'RecvHp'         => '수령인 번호',
+            'ShipingDate'    => '배송시작일',
+            'GoodName'       => '상품명',
+            'Price'          => '결제 금액',
+            'ShipCost'       => '배송비',
+            'PayMethod'      => '결제 방식',
+            'OrderData'      => '주문 데이터 JSON',
+            'OrderIp'        => '주문자 IP',
+            'ShipNum'        => '송장번호',
+            'RecvAddrNum'    => '수령 우편 번호',
+            'RecvAddr1'      => '수령 주소',
+            'RecvAddr2'      => '수령 주소',
+            'created_at'     => '생성일',
+            'updated_at'     => '수정일',
+            'ShipingEndDate' => '배송완료일',
+        ];
+    }
+
+    public static function notUpdateColumn(): array
+    {
+        return [
+            'OrderNum' => 1,
+            'MemberNo' => 1,
+            'GoodNo' => 1,
+            'GoodName' => 1,
+            'Price' => 1,
+            'ShipCost' => 1,
+            'PayMethod' => 1,
+            'OrderData' => 1,
+            'OrderIp' => 1,
+            'created_at' => 1,
         ];
     }
 }

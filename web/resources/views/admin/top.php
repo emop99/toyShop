@@ -122,24 +122,19 @@
                 </div>
             </div>
         </li>
-
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="charts.html">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Charts</span></a>
         </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="/admin/order">
                 <i class="fas fa-fw fa-table"></i>
                 <span>주문 관리</span></a>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle" onclick="ToyShop.Top.topToggleBtn();"></button>
@@ -333,10 +328,6 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 계정 설정
                             </a>
-                            <!--                            <a class="dropdown-item" href="javascript:;">-->
-                            <!--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
-                            <!--                                설정-->
-                            <!--                            </a>-->
                             <a class="dropdown-item" href="/admin/loginlog">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 접속 로그
