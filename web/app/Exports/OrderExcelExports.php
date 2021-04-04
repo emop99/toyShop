@@ -23,8 +23,6 @@ class OrderExcelExports implements FromView
 
     public function view(): View
     {
-        // TODO: Implement view() method.
-
         return view('exports.order', [
             'tableList'      => $this->data,
             'orderStateList' => Order::orderStateList(),

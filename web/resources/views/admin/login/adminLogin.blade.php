@@ -1,8 +1,6 @@
-<?php
-include base_path('resources/views/admin/login/') . 'top.php';
-?>
-
-    <script src="/js/Admin/Login.js?<?= CASH ?>"></script>
+@extends('admin.login.top')
+@section('bodyContent')
+    <script src="/js/Admin/Login.js?{{CASH}}"></script>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -54,6 +52,4 @@ include base_path('resources/views/admin/login/') . 'top.php';
         </div>
     </div>
 
-<?php
-include base_path('resources/views/admin/login/') . 'bottom.php';
-?>
+@endsection

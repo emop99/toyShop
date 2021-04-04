@@ -19,13 +19,13 @@
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/jquery-ui.js"></script>
     <script src="/js/datepicker-ko.js"></script>
-    <script src="/js/ToyShop.js?<?= CASH ?>"></script>
+    <script src="/js/ToyShop.js?v={{CASH}}"></script>
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/sb-admin-2.min.js"></script>
 </head>
 
 <body id="page-top">
-<input type="hidden" id="_token" value="<?= csrf_token() ?>">
+<input type="hidden" id="_token" value="{{csrf_token()}}">
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -132,6 +132,11 @@
             <a class="nav-link" href="/admin/order">
                 <i class="fas fa-fw fa-table"></i>
                 <span>주문 관리</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/goods">
+                <i class="fas fa-fw fa-table"></i>
+                <span>상품 관리</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -318,7 +323,7 @@
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <span
-                                class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $adminTopInfo['adminName'] ?></span>
+                                class="mr-2 d-none d-lg-inline text-gray-600 small">{{session('adminInfo')['Name']}}</span>
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <!-- Dropdown - User Information -->
@@ -344,3 +349,52 @@
 
             </nav>
             <!-- End of Topbar -->
+
+            @section('bodyContent')
+            @show
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Toy Shop 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">로그아웃을 하시겠습니까?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                <a class="btn btn-primary" href="javascript:;" onclick="ToyShop.Top.adminLogOut();">로그아웃</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
