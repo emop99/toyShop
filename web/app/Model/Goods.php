@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $GoodStock 재고 수량
  * @property int $ShipCost 배송비
  * @property string $KeyWord 검색 키워드
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Goods extends Model
 {
@@ -32,15 +34,36 @@ class Goods extends Model
     protected int $GoodStock;
     protected int $ShipCost;
     protected string $KeyWord;
+    protected string $created_at;
+    protected string $updated_at;
+
+    const GOOD_STATE_NO_SALE = 0; # 미판매 상태
+    const GOOD_STATE_SALE = 1; # 판매중 상태
+
+    public static function getStateList(): array
+    {
+        return [
+            0 => '미판매',
+            1 => '판매중',
+        ];
+    }
 
     /**
-     * $State 미판매 상태 값
-     * @var int GOOD_STATE_NO_SALE
+     * @return array
      */
-    const GOOD_STATE_NO_SALE = 0;
-    /**
-     * $State 판매 중 상태 값
-     * @var int GOOD_STATE_SALE
-     */
-    const GOOD_STATE_SALE = 1;
+    public static function getColumnList(): array
+    {
+        return [
+            'No',
+            'GoodName',
+            'State',
+            'Price',
+//            'GoodContent',
+            'GoodStock',
+            'ShipCost',
+//            'KeyWord',
+            'created_at',
+            'updated_at',
+        ];
+    }
 }
