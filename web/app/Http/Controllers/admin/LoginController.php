@@ -51,6 +51,7 @@ class LoginController
             $adminloginlog = new AdminLoginLog();
             $adminloginlog->AdminNo = $adminInfo['No'];
             $adminloginlog->Ip = $_SERVER['REMOTE_ADDR'];
+            $adminloginlog->LoginTime = date('Y-m-d H:i:s');
             $adminloginlog->save();
         }
 

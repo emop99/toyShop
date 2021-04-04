@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminLoginLog extends Model
 {
-    const CREATED_AT = 'LoginTime';
     public $timestamps = false;
     protected $table = 'table_adminloginlog';
     protected $primaryKey = 'No';
