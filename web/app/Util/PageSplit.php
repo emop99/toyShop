@@ -32,4 +32,12 @@ class PageSplit
         static::$requestUrl = $_SERVER['REQUEST_URI'];
         return explode('/', static::$requestUrl);
     }
+
+    /**
+     * @return string
+     */
+    public static function urlCheck():string
+    {
+        return explode('?', $_SERVER['REQUEST_URI'])[0];
+    }
 }

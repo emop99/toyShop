@@ -128,14 +128,14 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Charts</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item {{\App\Util\PageSplit::urlCheck() == '/admin/order' ? 'active' : ''}}">
             <a class="nav-link" href="/admin/order">
                 <i class="fas fa-fw fa-table"></i>
                 <span>주문 관리</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{\App\Util\PageSplit::urlCheck() == '/admin/goods' ? 'active' : ''}}">
             <a class="nav-link" href="/admin/goods">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="fas fa-fw fa-list"></i>
                 <span>상품 관리</span></a>
         </li>
         <!-- Divider -->
