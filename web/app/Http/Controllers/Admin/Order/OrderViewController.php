@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin\Order;
 
 
 use App\Model\Order;

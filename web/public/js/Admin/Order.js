@@ -58,7 +58,7 @@ ToyShop.Order = new function () {
      * @param orderNum
      */
     this.orderDetailViewBtn = function (orderNum) {
-        location.href = '/admin/orderView?orderNum=' + orderNum;
+        location.href = '/admin/order/orderView?orderNum=' + orderNum;
     };
 
 };
