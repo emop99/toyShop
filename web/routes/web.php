@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::match(['post', 'get'], '/admin/{id?}', 'AdminController@index')->middleware(\App\Http\Middleware\Admin::class);
+Route::match(['post', 'get'], '/admin/{id?}', 'AdminController@index')->middleware(Admin::class);
+Route::match(['post', 'get'], '/admin/{id?}/{subid}', 'AdminController@subIndex')->middleware(Admin::class);
