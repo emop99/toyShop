@@ -14,8 +14,17 @@ class AdminController extends Controller
 
     public function index(Request $request, $id = null)
     {
-        $this->folderPath = 'admin';
+        $this->folderPath = 'Admin';
         $this->className  = $id;
+
+        $class = $this->getControllerClass();
+        return call_user_func_array([new $class(), 'index'], [$request]);
+    }
+
+    public function subIndex(Request $request, $id = null, $subid = null)
+    {
+        $this->folderPath = 'Admin/' . ucfirst($id);
+        $this->className  = $subid;
 
         $class = $this->getControllerClass();
         return call_user_func_array([new $class(), 'index'], [$request]);
