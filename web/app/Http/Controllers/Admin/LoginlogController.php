@@ -1,16 +1,15 @@
 <?php
 
 
-namespace App\Http\Controllers\admin;
-
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Model\order\OrderManagement;
+use App\Model\AdminLoginLog;
 use App\Http\Controllers\ViewControl;
 use App\Http\Controllers\AdminTopValue;
 use App\Http\Controllers\RequestControl;
 
-class MainController
+class LoginlogController
 {
     use RequestControl;
     use ViewControl;
@@ -25,11 +24,11 @@ class MainController
     public function show()
     {
         $this->setAdminTopInfo($this->request);
+        $loginList = (new AdminLoginLog)->getAdminLoginList($this->request->session()->get('adminInfo')['No']);
 
-        return view('admin.main', [
+        return view('admin.loginlog', [
             'adminTopInfo' => $this->adminTopInfo,
-            'todayStatistics' => OrderManagement::todayStatistics(),
-            'todayNonDeliveryCnt' => OrderManagement::todayNonDeliveryCnt()
+            'loginList'    => $loginList
         ]);
     }
 }
