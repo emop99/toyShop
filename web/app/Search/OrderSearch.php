@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Model\order;
+namespace App\Search;
 
 
 use App\Model\Order;

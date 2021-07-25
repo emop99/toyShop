@@ -1,11 +1,10 @@
 <?php
 
 
-namespace App\Model\goods;
+namespace App\Search;
 
 
 use App\Model\Goods;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * 상품 검색
@@ -19,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $searchDateE
  * @property int $maxPageCnt
  */
-class GoodsSearch extends Model
+class GoodsSearch
 {
     private string $searchKey = '';
     private string $searchText = '';

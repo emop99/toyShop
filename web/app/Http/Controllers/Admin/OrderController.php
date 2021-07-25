@@ -4,8 +4,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Order;
+use App\Search\OrderSearch;
 use Illuminate\Http\Request;
-use App\Model\order\OrderSearch;
 use App\Exports\OrderExcelExports;
 use App\Model\order\OrderManagement;
 use Maatwebsite\Excel\Facades\Excel;

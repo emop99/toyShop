@@ -9,7 +9,7 @@ use App\Http\Controllers\RequestControl;
 use App\Http\Controllers\ViewControl;
 use App\Model\Goods;
 use App\Model\goods\GoodsManagement;
-use App\Model\goods\GoodsSearch;
+use App\Search\GoodsSearch;
 use Illuminate\Http\Request;
 
 class GoodsController
