@@ -23,8 +23,18 @@
                 @foreach($order as $column => $listRow)
                     @php
                     $addClass = '';
+                    $disabled = '';
                     if ($column == 'ShipNum' || $column == 'RecvHp' || $column == 'OrderHp') {
+                        # 숫자만 입력
                         $addClass .= ' onlyNumber ';
+                    }
+                    if (isset($notUpdateColumn[$column]) || $column == 'updated_at') {
+                        # 수정 불가
+                        $disabled = ' disabled ';
+                    }
+                    if ($column == 'ShipingEndDate' || $column == 'ShipingDate') {
+                        # 달력 양식
+                        $addClass .= ' calendar ';
                     }
                     @endphp
                     <div class="input-group mb-3">
@@ -33,7 +43,7 @@
                             {{$orderColumnNameList[$column]}}
                         </span>
                         </div>
-                        <input type="text" class="form-control {{$addClass}}" id="{{$column}}" value="{{$listRow}}" {{isset($notUpdateColumn[$column]) ? 'disabled' : ''}}>
+                        <input type="text" class="form-control {{$addClass}}" id="{{$column}}" value="{{$listRow}}" {{$disabled}}>
                     </div>
                 @endforeach
                 <div class="text-center">
