@@ -4,6 +4,9 @@
         /** @var \App\Model\Order $order */
     @endphp
 
+    <script src="/js/ZipScript.js"></script>
+    <script src="/js/Admin/Order/OrderView.js?v="{{CASH}}></script>
+
     <style>
         .w-200px {
             width: 250px;
@@ -18,13 +21,19 @@
         <div class="card">
             <div class="card-body">
                 @foreach($order as $column => $listRow)
+                    @php
+                    $addClass = '';
+                    if ($column == 'ShipNum' || $column == 'RecvHp' || $column == 'OrderHp') {
+                        $addClass .= ' onlyNumber ';
+                    }
+                    @endphp
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                         <span class="input-group-text w-200px">
                             {{$orderColumnNameList[$column]}}
                         </span>
                         </div>
-                        <input type="text" class="form-control" value="{{$listRow}}" {{isset($notUpdateColumn[$column]) ? 'disabled' : ''}}>
+                        <input type="text" class="form-control {{$addClass}}" id="{{$column}}" value="{{$listRow}}" {{isset($notUpdateColumn[$column]) ? 'disabled' : ''}}>
                     </div>
                 @endforeach
                 <div class="text-center">
