@@ -23,16 +23,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Goods extends Model
 {
-    public $primaryKey = 'No';
-    protected $table = 'table_goods';
+    public    $primaryKey = 'No';
+    protected $table      = 'table_goods';
 
-    protected int $No;
+    protected int    $No;
     protected string $GoodName;
-    protected int $State;
-    protected int $Price;
+    protected int    $State;
+    protected int    $Price;
     protected string $GoodContent;
-    protected int $GoodStock;
-    protected int $ShipCost;
+    protected int    $GoodStock;
+    protected int    $ShipCost;
     protected string $KeyWord;
     protected string $created_at;
     protected string $updated_at;
@@ -58,12 +58,36 @@ class Goods extends Model
             'GoodName',
             'State',
             'Price',
-//            'GoodContent',
+            //            'GoodContent',
             'GoodStock',
             'ShipCost',
-//            'KeyWord',
+            //            'KeyWord',
             'created_at',
             'updated_at',
+        ];
+    }
+
+    public static function getColumnNameList(): array
+    {
+        return [
+            'No'          => '상품 번호',
+            'GoodName'    => '상품명',
+            'State'       => '판매 상태',
+            'Price'       => '상품 가격',
+            'GoodContent' => '상품 상세내용',
+            'GoodStock'   => '재고 수량',
+            'ShipCost'    => '배송비',
+            'KeyWord'     => '검색 키워드',
+            'created_at'  => '생성일',
+            'updated_at'  => '수정일',
+        ];
+    }
+
+    public static function notUpdateColumn(): array
+    {
+        return [
+            'No'          => 1,
+            'created_at'  => 1,
         ];
     }
 }
