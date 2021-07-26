@@ -30,6 +30,14 @@ ToyShop.Goods = new function () {
             location.reload();
         });
     };
+
+    /**
+     * 상품 상세보기
+     * @param no 상품 번호
+     */
+    this.goodsDetailViewBtn = function (no) {
+        location.href = '/admin/goods/goodInfo?no=' + no;
+    };
 };
 
 $(function () {

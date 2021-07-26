@@ -1,7 +1,7 @@
 @extends('admin.top')
 @section('bodyContent')
     @php
-    /** @var \App\Model\goods\GoodsSearch $goodsSearch */
+    /** @var \App\Search\GoodsSearch $goodsSearch */
     @endphp
     <style>
         .container-fluid table {
@@ -135,6 +135,7 @@
                             <th>배송비</th>
                             <th>등록일</th>
                             <th>수정일</th>
+                            <th>상세보기</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -152,6 +153,11 @@
                                 <td>{{number_format($listRow->ShipCost)}}</td>
                                 <td>{{$listRow->created_at}}</td>
                                 <td>{{$listRow->updated_at}}</td>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-info btn-circle btn-sm" onclick="ToyShop.Goods.goodsDetailViewBtn('{{$listRow->No}}')">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         @if(empty($tableList->items()))
