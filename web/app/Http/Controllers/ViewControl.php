@@ -33,4 +33,13 @@ trait ViewControl
         echo json_encode($returnData);
         exit;
     }
+
+    /**
+     * @param string $msg
+     */
+    public function alertEchoHistoryBack($msg = '')
+    {
+        echo '<script>alert("' . $msg . '"); history.back();</script>';
+        exit;
+    }
 }
