@@ -22,13 +22,22 @@ class OrderViewController
 
     public function show()
     {
+        $orderNum = $this->request->get('orderNum');
+        if (!$orderNum) {
+            $this->alertEchoHistoryBack('잘못된 요청입니다.');
+        }
+
         $this->setAdminTopInfo($this->request);
 
-        $order = Order::find($this->request->get('orderNum'))->toArray();
+        $order = Order::find($orderNum);
+
+        if (!$order) {
+            $this->alertEchoHistoryBack('주문 번호를 확인해주세요.');
+        }
 
         return view('admin.order.orderView', [
             'adminTopInfo'        => $this->adminTopInfo,
-            'order'               => $order,
+            'order'               => $order->toArray(),
             'orderColumnNameList' => Order::getColumnNameList(),
             'notUpdateColumn'     => Order::notUpdateColumn(),
         ]);
