@@ -21,7 +21,7 @@
         }
     </style>
 
-    <script src="/js/Admin/Goods.js?{{CASH}}"></script>
+    <script src="/js/Admin/Goods/Goods.js?{{CASH}}"></script>
 
     <div class="container-fluid">
         <!-- Page Heading -->
