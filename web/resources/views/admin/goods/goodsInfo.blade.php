@@ -18,45 +18,51 @@
         </div>
 
         <div class="card">
-            <div class="card-body">
-                @foreach($goods as $column => $listRow)
-                    @php
-                        $addClass = '';
-                        $disabled = '';
-                        $passColumn = false;
-                        if ($column == 'GoodStock' || $column == 'Price' || $column == 'ShipCost') {
-                            # 숫자만 입력
-                            $addClass .= ' onlyNumber ';
-                        }
-                        if (isset($notUpdateColumn[$column]) || $column == 'updated_at') {
-                            # 수정 불가
-                            $disabled = ' disabled ';
-                        }
-                        if ($column == 'GoodContent') {
-                            # 미생성
-                            $passColumn = true;
-                        }
-                    @endphp
-                    @if(!$passColumn)
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+            <form id="goodsInfoForm" target="tempIframe" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="mode" value="modifySave">
+                <input type="hidden" name="goodNo" value="{{$goods['No']}}">
+                <div class="card-body">
+                    @foreach($goods as $column => $listRow)
+                        @php
+                            $addClass = '';
+                            $disabled = '';
+                            $passColumn = false;
+                            $modify = false;
+                            if ($column == 'GoodStock' || $column == 'Price' || $column == 'ShipCost') {
+                                # 숫자만 입력
+                                $addClass .= ' onlyNumber ';
+                            }
+                            if (isset($notUpdateColumn[$column]) || $column == 'updated_at') {
+                                # 수정 불가
+                                $disabled = ' disabled ';
+                            }
+                            if ($column == 'GoodContent') {
+                                # 미생성
+                                $passColumn = true;
+                            }
+                        @endphp
+                        @if(!$passColumn)
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
                             <span class="input-group-text w-200px">
                                 {{$goodsColumnNameList[$column]}}
                             </span>
+                                </div>
+                                <input type="text" class="form-control {{$addClass}}" id="{{$column}}" name="{{!$disabled ? $column : ''}}" value="{{$listRow}}" {{$disabled}}>
                             </div>
-                            <input type="text" class="form-control {{$addClass}}" id="{{$column}}" value="{{$listRow}}" {{$disabled}}>
-                        </div>
-                    @endif
-                @endforeach
-                <div class="input-group mb-3">
-                    <label for="contentsArea"></label><textarea id="contentsArea" name="contentsArea" style="width: 50%"></textarea>
+                        @endif
+                    @endforeach
+                    <div class="input-group mb-3">
+                        <label for="contentsArea"></label><textarea id="contentsArea" name="contentsArea" style="width: 50%">{{$goods['GoodContent']}}</textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="ToyShop.GoodsInfo.saveBtn();">
+                            저장
+                        </button>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="ToyShop.GoodsInfo.saveBtn();">
-                        저장
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 

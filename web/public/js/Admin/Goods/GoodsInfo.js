@@ -2,7 +2,7 @@ ToyShop.GoodsInfo = new function () {
 
 
     this.saveBtn = function () {
-
+        $('#goodsInfoForm').submit();
     };
 
 };

@@ -26,6 +26,7 @@
 
 <body id="page-top">
 <input type="hidden" id="_token" value="{{csrf_token()}}">
+<iframe id="tempIframe" style="display: none;"></iframe>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
