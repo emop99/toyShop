@@ -51,7 +51,7 @@ class Goods extends Model
     /**
      * @return array
      */
-    public static function getColumnList(): array
+    public static function getSelectColumnList(): array
     {
         return [
             'No',
@@ -61,7 +61,7 @@ class Goods extends Model
             //            'GoodContent',
             'GoodStock',
             'ShipCost',
-            //            'KeyWord',
+            'KeyWord',
             'created_at',
             'updated_at',
         ];
@@ -86,8 +86,8 @@ class Goods extends Model
     public static function notUpdateColumn(): array
     {
         return [
-            'No'          => 1,
-            'created_at'  => 1,
+            'No'         => 1,
+            'created_at' => 1,
         ];
     }
 }

@@ -48,7 +48,7 @@ class GoodsSearch
     {
         /** @var Goods $good */
         $good = new Goods();
-        $good = $good->select(Goods::getColumnList());
+        $good = $good->select(Goods::getSelectColumnList());
 
         if ($this->searchKey && $this->searchText) {
             $good = $good->where($this->searchKey, 'like', '%' . $this->searchText . '%');
