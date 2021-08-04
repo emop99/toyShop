@@ -19,7 +19,8 @@ ToyShop.Top = new function () {
             'method': 'POST',
             'cache': false,
             'dataType': 'json',
-            'url': window.location.pathname
+            'url': window.location.pathname,
+            'loading': 0,
         };
 
         option = $.extend(normalOption, option);
@@ -36,8 +37,31 @@ ToyShop.Top = new function () {
             },
             success: function (data) {
                 callBack(data);
+            },
+            beforeSend: function () {
+                // loading bar show
+                ToyShop.Top.loadingBarShow(1);
+            },
+            complete: function () {
+                // loading bar hide
+                if (option.loading !== 1) {
+                    ToyShop.Top.loadingBarShow(0);
+                }
             }
         });
+    };
+
+    /**
+     * loadingBar Show|noShow
+     * @param showType 1:Show 0:noShow
+     */
+    this.loadingBarShow = (showType) => {
+        let loadingBar = $('#loading-main');
+        if (showType === 1) {
+            loadingBar.show();
+        } else {
+            loadingBar.hide();
+        }
     };
 
     /**
@@ -114,6 +138,6 @@ $(function () {
     });
 
     $('.onlyNumber').on('keyup', function () {
-        $(this).val($(this).val().replace(/[^0-9]/g,""));
+        $(this).val($(this).val().replace(/[^0-9]/g, ""));
     });
 });

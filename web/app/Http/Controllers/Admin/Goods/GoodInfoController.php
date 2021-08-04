@@ -55,6 +55,6 @@ class GoodInfoController
         $postDateList['updated_at'] = date('Y-m-d H:i:s');
         Goods::infoUpdate($goodNo, $postDateList);
 
-        return response('<script>alert("저장되었습니다.");</script>');
+        return response('<script>alert("저장되었습니다."); parent.ToyShop.Top.loadingBarShow(0); </script>');
     }
 }

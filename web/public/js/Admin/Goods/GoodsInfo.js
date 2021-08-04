@@ -4,6 +4,7 @@ ToyShop.GoodsInfo = new function () {
      * 저장 버튼 이벤트
      */
     this.saveBtn = function () {
+        ToyShop.Top.loadingBarShow(1);
         $('#goodsInfoForm').submit();
     };
 
