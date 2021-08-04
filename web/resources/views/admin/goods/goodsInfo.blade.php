@@ -54,7 +54,7 @@
                         @endif
                     @endforeach
                     <div class="input-group mb-3">
-                        <label for="GoodContent"></label><textarea id="GoodContent" name="GoodContent" style="width: 50%">{{$goods['GoodContent']}}</textarea>
+                        <label for="GoodContent"></label><textarea id="GoodContent" name="GoodContent" style="width: 100%">{{$goods['GoodContent']}}</textarea>
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary btn-lg" onclick="ToyShop.GoodsInfo.saveBtn();">
