@@ -1,6 +1,8 @@
 ToyShop.GoodsInfo = new function () {
 
-
+    /**
+     * 저장 버튼 이벤트
+     */
     this.saveBtn = function () {
         $('#goodsInfoForm').submit();
     };
@@ -11,7 +13,7 @@ ToyShop.GoodsInfo = new function () {
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
     oAppRef: oEditors,
-    elPlaceHolder: "contentsArea",  // textarea ID
+    elPlaceHolder: "GoodContent",  // textarea ID
     sSkinURI: "/smartEditor/index.html",  // skin경로
     fCreator: "createSEditor2",
 });

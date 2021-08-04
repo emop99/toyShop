@@ -41,4 +41,20 @@ class GoodInfoController
             'notUpdateColumn'     => Goods::notUpdateColumn(),
         ]);
     }
+
+    /**
+     * 상품 수정 저장 처리
+     */
+    public function modifySave()
+    {
+        $postDateList = $this->request->post();
+        $goodNo = $this->request->post('goodNo');
+        unset($postDateList['mode']);
+        unset($postDateList['_token']);
+        unset($postDateList['goodNo']);
+        $postDateList['updated_at'] = date('Y-m-d H:i:s');
+        Goods::infoUpdate($goodNo, $postDateList);
+
+        return response('<script>alert("저장되었습니다.");</script>');
+    }
 }

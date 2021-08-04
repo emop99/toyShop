@@ -4,7 +4,7 @@
 @extends('admin.top')
 @section('bodyContent')
 
-    <script type="text/javascript" src="/smartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+    <script charset="utf-8" src="/smartEditor/js/service/HuskyEZCreator.js" type="text/javascript"></script>
 
     <style>
         .w-200px {
@@ -18,7 +18,7 @@
         </div>
 
         <div class="card">
-            <form id="goodsInfoForm" target="tempIframe" method="post" enctype="multipart/form-data">
+            <form enctype="multipart/form-data" id="goodsInfoForm" method="post" target="tempIframe">
                 @csrf
                 <input type="hidden" name="mode" value="modifySave">
                 <input type="hidden" name="goodNo" value="{{$goods['No']}}">
@@ -54,7 +54,7 @@
                         @endif
                     @endforeach
                     <div class="input-group mb-3">
-                        <label for="contentsArea"></label><textarea id="contentsArea" name="contentsArea" style="width: 50%">{{$goods['GoodContent']}}</textarea>
+                        <label for="GoodContent"></label><textarea id="GoodContent" name="GoodContent" style="width: 50%">{{$goods['GoodContent']}}</textarea>
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary btn-lg" onclick="ToyShop.GoodsInfo.saveBtn();">

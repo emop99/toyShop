@@ -5,6 +5,7 @@ namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Goods
@@ -89,5 +90,15 @@ class Goods extends Model
             'No'         => 1,
             'created_at' => 1,
         ];
+    }
+
+    /**
+     * @param int $goodNo
+     * @param array $updateData
+     * @return void
+     */
+    public static function infoUpdate(int $goodNo, array $updateData)
+    {
+        DB::table('table_goods')->where('No', $goodNo)->update($updateData);
     }
 }
