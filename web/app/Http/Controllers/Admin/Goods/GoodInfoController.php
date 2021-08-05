@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminTopValue;
 use App\Http\Controllers\RequestControl;
 use App\Http\Controllers\ViewControl;
 use App\Model\Goods;
+use App\Util\EditorBaseToFile;
 use Illuminate\Http\Request;
 
 class GoodInfoController
@@ -49,10 +50,14 @@ class GoodInfoController
     {
         $postDateList = $this->request->post();
         $goodNo = $this->request->post('goodNo');
+
         unset($postDateList['mode']);
         unset($postDateList['_token']);
         unset($postDateList['goodNo']);
+
         $postDateList['updated_at'] = date('Y-m-d H:i:s');
+        $postDateList['GoodContent'] = EditorBaseToFile::base64DataToImageSave($postDateList['GoodContent']);
+
         Goods::infoUpdate($goodNo, $postDateList);
 
         return response('<script>alert("저장되었습니다."); parent.ToyShop.Top.loadingBarShow(0); </script>');
