@@ -1,4 +1,5 @@
 <link href="/css/loadingbar.css" rel="stylesheet" type="text/css">
+<iframe id="tempIframe" name="tempIframe" style="display: none;"></iframe>
 
 <input type="hidden" id="_token" value="{{csrf_token()}}">
 

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>-toyShop-</title>
+    <title>-ToyShop Admin-</title>
 
     <link href="/css/all.css" rel="stylesheet" type="text/css">
     <link href="/css/sb-admin-2.css" rel="stylesheet">
@@ -27,8 +27,6 @@
 <body id="page-top">
 
 @include('components.loading-bar')
-
-<iframe id="tempIframe" name="tempIframe" style="display: none;"></iframe>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
