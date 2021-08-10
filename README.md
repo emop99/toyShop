@@ -10,3 +10,8 @@
 - vagrant
 - virtualbox
 - laradock
+
+
+License
+
+All files in this repository are under the MIT License unless noted otherwise.
