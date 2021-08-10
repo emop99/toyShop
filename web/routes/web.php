@@ -16,3 +16,7 @@ use \App\Http\Middleware\Admin;
 
 Route::match(['post', 'get'], '/admin/{id?}', 'AdminController@index')->middleware(Admin::class);
 Route::match(['post', 'get'], '/admin/{id?}/{subid}', 'AdminController@subIndex')->middleware(Admin::class);
+
+Route::match(['post', 'get'], '/', 'ShopController@index');
+Route::match(['post', 'get'], '/{id}', 'ShopController@subindex');
+Route::match(['post', 'get'], '/{id}/{subid}', 'ShopController@subsubindex');

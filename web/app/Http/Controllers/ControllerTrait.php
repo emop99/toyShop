@@ -30,7 +30,7 @@ trait ControllerTrait
             Log::info(__METHOD__ . '::' . $classFilePath);
         }
 
-        header('location: ' . '/admin/main');
+        header('location: ' . '/');
         exit;
     }
 }
