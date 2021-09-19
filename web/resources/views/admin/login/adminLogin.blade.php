@@ -37,12 +37,12 @@
                                         </a>
                                         <hr>
                                     </form>
-                                    <div class="text-center">
-                                        <a class="small" href="javascript:;">비밀번호를 잊어버리셨습니까?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="/admin/join">회원가입</a>
-                                    </div>
+{{--                                    <div class="text-center">--}}
+{{--                                        <a class="small" href="javascript:;">비밀번호를 잊어버리셨습니까?</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="text-center">--}}
+{{--                                        <a class="small" href="/admin/join">회원가입</a>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
